@@ -66,7 +66,7 @@ sanitize_test_names() {
 
     if [[ "${mp_tck}" == "mp-tck" ]]; then
         echo "$(echo ${test} | awk -F'-' '{print $1}')"
-    elif [[ "${mp_tck}" == "solr-" || "${mp_tck}" == "test-" ]]; then
+    elif [[ "${mp_tck}" == "solr-" || "${mp_tck}" == "test-" || "${mp_tck}" == "tests-" ]]; then
         echo "$(echo ${test} | sed 's/-/_/g')"
     else
         echo "${test}"
