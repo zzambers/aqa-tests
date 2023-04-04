@@ -666,6 +666,9 @@ def runTest( ) {
 				sh "/usr/X11/bin/Xvfb :2 -screen 0 1024x768x24 &"
 				env.DISPLAY = ":2"
 				echo "env.DISPLAY is ${env.DISPLAY}"
+			} else if (env.SPEC.startsWith('osx')) {
+				env.AWT_FORCEHEADFUL = "true"
+				echo "env.AWT_FORCEHEADFUL is ${env.AWT_FORCEHEADFUL}"
 			}
 		}
 		for (int i = 1; i <= ITERATIONS; i++) {
