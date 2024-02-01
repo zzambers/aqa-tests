@@ -1,6 +1,6 @@
 name: 'Disabled Tests Linter'
 on:
-  pull_request:
+  push:
     paths:
     - 'openjdk/excludes/*'
     - '**/playlist.xml'
