@@ -1,0 +1,28 @@
+name: 'Playlist Lint'
+on: push
+#on:
+#  push:
+#    paths:
+#    - '**/playlist.xml'
+
+jobs:
+  playlistLint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Checkout main TKG repo
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          repository: 'adoptium/TKG.git'
+          ref: 'master'
+          path: 'TKG'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install libxml2-utils
+
+      - name: Check playlists
+        run: find . -name "playlist.xml" -exec xmllint --noout --schema "TKG/resources/playlist.xsd" '{}' ';'
